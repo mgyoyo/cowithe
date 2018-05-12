@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: brown;
+        }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        var margin_averagechart = { top: 20, right: 20, bottom: 30, left: 40 },
+            width_averagechart = 960 - margin_averagechart.left - margin_averagechart.right,
+            height_averagechart = 500 - margin_averagechart.top - margin_averagechart.bottom;
+
+        var xAvgChart = d3.scaleBand()
+            .rangeRound([0, width_averagechart], .1)
+            .paddingInner(0.1);
+
+        var yAvgChart = d3.scaleLinear()
+            .range([height_averagechart, 0]);
+
+        var xAxis = d3.axisBottom()
+            .scale(xAvgChart);
+
+        var yAxis = d3.axisLeft()
+            .scale(yAvgChart);
+        // .ticks(10, "%");
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width_averagechart + margin_averagechart.left + margin_averagechart.right)
+            .attr("height", height_averagechart + margin_averagechart.top + margin_averagechart.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin_averagechart.left + "," + margin_averagechart.top + ")");
+
+        d3.csv("airbnbNYC_2017.csv", function (data) {
+
+            // Group data by neghbourhood
+            var groupByNeghbour = d3.nest()
+                .key(function (d) { return d.borough; })
+                .entries(data);
+
+            groupByNeghbour.forEach(group => {
+                group.average = d3.mean(group.values, function (d) {
+                    return d.price;
+                });
+            });
+            console.log(groupByNeghbour);
+            // Draw Barchar
+            xAvgChart.domain(groupByNeghbour.map(function (d) { return d.key; }));
+            yAvgChart.domain([0, d3.max(groupByNeghbour, function (d) { return d.average; })]);
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height_averagechart + ")");
+                //.call(xAxis);
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("Frequency");
+
+            svg.selectAll(".bar")
+                .data(groupByNeghbour)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) { return xAvgChart(d.key); })
+                .attr("width", xAvgChart.bandwidth())
+                .attr("y", function (d) { return yAvgChart(d.average); })
+                .attr("height", function (d) { return height_averagechart - yAvgChart(d.average); });
+            return;
+        });
+    </script>
+</body>
+</html>
