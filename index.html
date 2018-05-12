@@ -47,7 +47,7 @@
 
         h2.title {
             color: #202020;
-            
+
         }
 
 
@@ -72,11 +72,11 @@
       </body>
 
 
-            
+
           <script type="text/javascript">
           // Your beautiful D3 code will go here
           //https://www.dashingd3js.com/lessons/geojson
-                
+
           var margin_chart = {top: 10, right: 30, bottom: 60, left: 80},
               width_chart = 960 - margin_chart.left - margin_chart.right,
               width_brush = width_chart ;
@@ -98,7 +98,7 @@
                           .attr("width", width_chart + margin_chart.left + margin_chart.right)
                           .attr("height", height_chart + margin_chart.top + margin_chart.bottom)
                           .append("g")
-                          .attr("transform", 
+                          .attr("transform",
                                   "translate(" + margin_chart.left + "," + margin_chart.top + ")");
 
           var svgmap = d3.select("#svgmap")
@@ -114,7 +114,7 @@
                             .append("g")
                             .attr("transform", "translate(" + margin_averagechart.left + "," + margin_averagechart.top + ")");
 
-          
+
           var projection = d3.geoMercator().scale(45000).translate([width_map /2, height_map/2]).center([-74.0, 40.7]);
           var path = d3.geoPath().projection(projection);
 
@@ -163,12 +163,12 @@
                         groupPrice.forEach(function(d){
                           d.key = parseInt(d.key);
                         });
-                
+
 
                 var brush = d3.brushX()
                               .extent([[0, 0], [width_brush, height_brush]])
                               .on("brush", brushed)
-                              .on("end", updateData); 
+                              .on("end", updateData);
                               ;
 
                 function brushed(){
@@ -186,16 +186,16 @@
                     if (data[i].price >= range[0] && data[i].price <= range[1]){
                         brushedData.push(data[i]);
                     }
-                  };   
-                  console.log(brushedData); 
+                  };
+                  console.log(brushedData);
                   drawCircle();
               }
 
-               
+
                 var x = d3.scaleLinear()
                           .domain([0, d3.max(groupPrice, function(d) { return d.key; })])
                           .range([0, width_chart]);
-                
+
                 var y = d3.scaleLinear()
                           .range([height_chart, 0])
                           .domain([0, d3.max(groupPrice, function(d) { return d.value; })]);
@@ -285,7 +285,7 @@
 
               });
 
-  
+
             // Group data by neghbourhood
             var groupByNeghbour = d3.nest()
                 .key(function (d) { return d.borough; })
@@ -340,7 +340,17 @@
                 .attr("width", xAvgChart.bandwidth())
                 .attr("y", function (d) { return yAvgChart(d.average); })
                 .attr("height", function (d) { return height_averagechart - yAvgChart(d.average); });
-      });         
+      });
+
+      <div class="w3-container">
+        <h3><b>Expliner Page</b></h3>
+        <p style="color:grey;">The story behind the project. <span class="w3-opacity"><a href="explainer.html" target="_blank">Expliner: Telling the Stories Behind Data</a></span></p>
+      </div>
+
+      <div class="w3-container">
+        <h3><b>Github Repo</b></h3>
+        <p style="color:grey;">The code of story page and expainer page <span class="w3-opacity"><a href="https://github.com/ninomiyaonion/project-assignment-B" target="_blank">project-assignment-B</a></span></p>
+      </div>
 
             </script>
 <!--         </body> -->
