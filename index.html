@@ -673,8 +673,169 @@
 										 .style("font-size", "16px")
 										 .text(function(d) {return d.city;});
 									//   .call(zoom);
+                  //add lengend:
+                                                var legend_1 = svgmap.append("g")
+                                                  .attr("class", "legend")
+                                                   //.attr("x", w - 65)
+                                                   //.attr("y", 25)
+                                                   //.attr("height", 100)
+                                                   //.attr("width", 100)
+                                                   .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                 legend_1.selectAll('rect')
+                                                  .data(data)
+                                                  .enter()
+                                                 .append("rect")
+                                                  .attr("x", 100)
+                                                  .attr("y", 30)
+                                                  .attr("width", 30)
+                                                  .attr("height", 20)
+                                                  .style("fill", "#FFF8DC")
+                                                  .style("opacity", .7);
+
+                                                legend_1.selectAll('text')
+                                                 .data(brushedData)
+                                                 .enter()
+                                                 .append("text")
+                                                 .attr("x",40)
+                                                 .attr("y",44)
+                                                 .text("Price: 0 - 50");
+
+                                                 var legend_2 = svgmap.append("g")
+                                                   .attr("class", "legend")
+                                                    //.attr("x", w - 65)
+                                                    //.attr("y", 25)
+                                                    //.attr("height", 100)
+                                                    //.attr("width", 100)
+                                                    .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                  legend_2.selectAll('rect')
+                                                   .data(data)
+                                                   .enter()
+                                                  .append("rect")
+                                                   .attr("x", 100)
+                                                   .attr("y", 60)
+                                                   .attr("width", 30)
+                                                   .attr("height", 20)
+                                                   .style("fill", "#FFE4C4")
+                                                   .style("opacity", .7);
+
+                                                 legend_2.selectAll('text')
+                                                  .data(data)
+                                                  .enter()
+                                                  .append("text")
+                                                  .attr("x",40)
+                                                  .attr("y",74)
+                                                  .text("Price: 50 - 100");
 
 
+                                                  var legend_3 = svgmap.append("g")
+                                                    .attr("class", "legend")
+                                                     //.attr("x", w - 65)
+                                                     //.attr("y", 25)
+                                                     //.attr("height", 100)
+                                                     //.attr("width", 100)
+                                                     .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                   legend_3.selectAll('rect')
+                                                    .data(data)
+                                                    .enter()
+                                                   .append("rect")
+                                                    .attr("x", 100)
+                                                    .attr("y", 90)
+                                                    .attr("width", 30)
+                                                    .attr("height", 20)
+                                                    .style("fill", "#FFA07A")
+                                                    .style("opacity", .7);
+
+                                                  legend_3.selectAll('text')
+                                                   .data(brushedData)
+                                                   .enter()
+                                                   .append("text")
+                                                   .attr("x",40)
+                                                   .attr("y",104)
+                                                   .text("Price: 100 - 200");
+
+                                                   var legend_4 = svgmap.append("g")
+                                                     .attr("class", "legend")
+                                                      //.attr("x", w - 65)
+                                                      //.attr("y", 25)
+                                                      //.attr("height", 100)
+                                                      //.attr("width", 100)
+                                                      .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                    legend_4.selectAll('rect')
+                                                     .data(data)
+                                                     .enter()
+                                                    .append("rect")
+                                                     .attr("x", 100)
+                                                     .attr("y", 120)
+                                                     .attr("width", 30)
+                                                     .attr("height", 20)
+                                                     .style("fill", "#FF6347")
+                                                     .style("opacity", .7);
+
+                                                   legend_4.selectAll('text')
+                                                    .data(brushedData)
+                                                    .enter()
+                                                    .append("text")
+                                                    .attr("x",40)
+                                                    .attr("y",134)
+                                                    .text("Price: 200 - 500");
+
+                                                    var legend_5 = svgmap.append("g")
+                                                      .attr("class", "legend")
+                                                       //.attr("x", w - 65)
+                                                       //.attr("y", 25)
+                                                       //.attr("height", 100)
+                                                       //.attr("width", 100)
+                                                       .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                     legend_5.selectAll('rect')
+                                                      .data(data)
+                                                      .enter()
+                                                     .append("rect")
+                                                      .attr("x", 100)
+                                                      .attr("y", 150)
+                                                      .attr("width", 30)
+                                                      .attr("height", 20)
+                                                      .style("fill", "#FF4500")
+                                                      .style("opacity", .7);
+
+                                                    legend_5.selectAll('text')
+                                                     .data(brushedData)
+                                                     .enter()
+                                                     .append("text")
+                                                     .attr("x",40)
+                                                     .attr("y",164)
+                                                     .text("Price: 500 - 700");
+
+                                                     var legend_6 = svgmap.append("g")
+                                                       .attr("class", "legend")
+                                                        //.attr("x", w - 65)
+                                                        //.attr("y", 25)
+                                                        //.attr("height", 100)
+                                                        //.attr("width", 100)
+                                                        .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                      legend_6.selectAll('rect')
+                                                       .data(data)
+                                                       .enter()
+                                                      .append("rect")
+                                                       .attr("x", 100)
+                                                       .attr("y", 180)
+                                                       .attr("width", 30)
+                                                       .attr("height", 20)
+                                                       .style("fill", "#800000")
+                                                       .style("opacity", .7);
+
+                                                     legend_6.selectAll('text')
+                                                      .data(brushedData)
+                                                      .enter()
+                                                      .append("text")
+                                                      .attr("x",40)
+                                                      .attr("y",194)
+                                                      .text("Price > 700");
 									 });
 
 
