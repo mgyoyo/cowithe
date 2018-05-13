@@ -2,7 +2,7 @@
     <html lang="en">
         <head>
             <meta charset="utf-8">
-            <title>D3 Test</title>
+            <title>Project Assignment B</title>
             <script type="text/javascript" src="d3/d3.js"></script>
         </head>
         <style type="text/css">
@@ -50,8 +50,19 @@
 
         h2.title {
             color: #202020;
-            
+
         }
+
+        .navigation {
+          box-sizing: border-box;
+          background-color: whitesmoke;
+          overflow: auto;
+         padding: 18px 50px;
+         position: relative;
+         top: 0;
+         width: 100%;
+         z-index: 999;
+         }
 
         .text{
           font-family: Georgia;
@@ -61,6 +72,16 @@
 
         </style>
         <body>
+
+          <ul class="navigation">
+           <li><a href="#svgchart">Airbnb in NYC Price Chart</a></li>
+           <li><a href="#svgmap">Location of Airbnb in NYC</a></li>
+           <li><a href="#averagechart">Average Price of Airbnb in NYC</a></li>
+           <li><a href="#selectMap">Filter the Airbnb in NYC</a></li>
+           <li><a href="#useful links">Explainer document & code</a></li>
+
+
+          </ul>
 
           <div id="svgchart">
               <h2>Airbnb in NYC Price Chart</h2>
@@ -114,7 +135,7 @@
 
           </div>
 
-          <div id="dlfile"> 
+          <div id="dlfile">
             Please feel free to download this dataset to try.
             <a href="/airbnbNYC_2017.csv" download>AirbnbNYC 2017 Dataset</a>
             <br>
@@ -124,11 +145,11 @@
       </body>
 
 
-            
+
           <script type="text/javascript">
           // Your beautiful D3 code will go here
           //https://www.dashingd3js.com/lessons/geojson
-                
+
           var margin_chart = {top: 10, right: 30, bottom: 60, left: 80},
               width_chart = 960 - margin_chart.left - margin_chart.right,
               width_brush = width_chart ;
@@ -153,7 +174,7 @@
                           .attr("width", width_chart + margin_chart.left + margin_chart.right)
                           .attr("height", height_chart + margin_chart.top + margin_chart.bottom)
                           .append("g")
-                          .attr("transform", 
+                          .attr("transform",
                                   "translate(" + margin_chart.left + "," + margin_chart.top + ")");
 
           var svgmap = d3.select("#svgmap")
@@ -176,7 +197,7 @@
 
           var projectionSelect = d3.geoMercator().scale(65000).translate([width_selectmap /2, height_selectmap/2]).center([-74.0, 40.7]);
           var pathSelect = d3.geoPath().projection(projectionSelect);
-          
+
           var projection = d3.geoMercator().scale(65000).translate([width_map /2, height_map/2]).center([-74.0, 40.7]);
           var path = d3.geoPath().projection(projection);
 
@@ -211,7 +232,7 @@
                           }
                         });
 
-                     
+
 
                       data.forEach(function(d){
                           d.price = parseInt(d.price);
@@ -227,12 +248,12 @@
                         groupPrice.forEach(function(d){
                           d.key = parseInt(d.key);
                         });
-                
+
 
                 var brush = d3.brushX()
                               .extent([[0, 0], [width_brush, height_brush]])
                               .on("brush", brushed)
-                              .on("end", updateData); 
+                              .on("end", updateData);
                               ;
 
                 function brushed(){
@@ -250,16 +271,16 @@
                     if (data[i].price >= range[0] && data[i].price <= range[1]){
                         brushedData.push(data[i]);
                     }
-                  };   
-                  console.log(brushedData); 
+                  };
+                  console.log(brushedData);
                   drawCircle();
               }
 
-               
+
                 var x = d3.scaleLinear()
                           .domain([0, d3.max(groupPrice, function(d) { return d.key; })])
                           .range([0, width_chart]);
-                
+
                 var y = d3.scaleLinear()
                           .range([height_chart, 0])
                           .domain([0, d3.max(groupPrice, function(d) { return d.value; })]);
@@ -347,9 +368,9 @@
                                   .style("opacity", 0.85) ;
                 }
 
-              
 
-  
+
+
             // Group data by neghbourhood
             var groupByNeghbour = d3.nest()
                 .key(function (d) { return d.borough; })
@@ -430,12 +451,12 @@
                                 return "rgb(158,202,225)";
                             }
                         });
-            
+
 
 
             var groupRoomType = d3.nest()
                 .key(function (d) { return d.room_type })
-                .entries(data);                                 
+                .entries(data);
 
             // Set default value
             var rmtype_now = "Private room";
@@ -510,8 +531,20 @@
             }
 
         });
-      });         
+      });
 
             </script>
+
+            <div id="useful links">
+              <h3>Expliner Page</h3>
+                <p style="color:grey;">The story behind the project. <span class="w3-opacity"><a href="explainer.html" target="_blanck">Expliner: Telling the Stories Behind Data</a></span></p>
+
+
+
+
+
+              <h3>Github Repo</h3>
+              <p style="color:grey;">The code of story page and expainer page <span class="w3-opacity"><a href="https://github.com/ninomiyaonion/project-assignment-B" target="_blank">project-assignment-B</a></span></p>
+            </div>
 <!--         </body> -->
 </html>
