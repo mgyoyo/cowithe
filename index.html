@@ -564,7 +564,6 @@
                                     return "#800000";
                                   }
                                 })
-                                  })
                                   .style("opacity", 0.85) ;
                 }
 
@@ -743,14 +742,18 @@
                         // Get data value
                         var value = d.price;
 
-                        if (value < 50) {
-                            return "red";
+                        if (value  < 50) {
+                          return "#FFF8DC";
                         } else if (value < 100) {
-                            return "blue";
-                        } else if (value < 200) {
-                            return "rgb(217,81,67)";
-                        } else {
-                            return "rgb(200,81,67)";
+                          return "#FFE4C4";
+                        } else if (value < 200){
+                          return "#FFA07A";
+                        } else if (value < 500){
+                          return "#FF6347"
+                        } else if (value < 700){
+                          return "#FF4500"
+                        }else {
+                          return "#800000";
                         }
                     })
                     .style("opacity", 0.85);
