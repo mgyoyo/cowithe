@@ -479,6 +479,32 @@
                             }
                         });
 
+						//add name
+						d3.csv("cities.csv", function(error, data) {
+							 svgselectMap.selectAll("text")
+										 .append("g")
+										 .data(data)
+										 .enter()
+										 .append("text")
+										 .attr("x", function(d){
+											 return projection([d.lon, d.lat])[0];
+										 })
+										 .attr("y", function(d){
+											 return projection([d.lon, d.lat])[1];
+										 })
+										 .attr("dy", -7)
+										 .style("fill", "black")
+										 .style("opacity", .9)
+										 .style("stroke","white")
+										 .style("stroke-opacity", .4)
+										 .attr("text-anchor", "middle")
+										 .style("font-size", "16px")
+										 .text(function(d) {return d.city;});
+									//   .call(zoom);
+
+
+									 });
+
 
 
             var groupRoomType = d3.nest()
