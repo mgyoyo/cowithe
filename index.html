@@ -674,7 +674,7 @@
 										 .text(function(d) {return d.city;});
 									//   .call(zoom);
                   //add lengend:
-                                                var legend_1 = svgmap.append("g")
+                                                var legend_1 = svgselectMap.append("g")
                                                   .attr("class", "legend")
                                                    //.attr("x", w - 65)
                                                    //.attr("y", 25)
@@ -694,14 +694,14 @@
                                                   .style("opacity", .7);
 
                                                 legend_1.selectAll('text')
-                                                 .data(brushedData)
+                                                 .data(data)
                                                  .enter()
                                                  .append("text")
                                                  .attr("x",40)
                                                  .attr("y",44)
                                                  .text("Price: 0 - 50");
 
-                                                 var legend_2 = svgmap.append("g")
+                                                 var legend_2 = svgselectMap.append("g")
                                                    .attr("class", "legend")
                                                     //.attr("x", w - 65)
                                                     //.attr("y", 25)
@@ -729,7 +729,7 @@
                                                   .text("Price: 50 - 100");
 
 
-                                                  var legend_3 = svgmap.append("g")
+                                                  var legend_3 = svgselectMap.append("g")
                                                     .attr("class", "legend")
                                                      //.attr("x", w - 65)
                                                      //.attr("y", 25)
@@ -749,14 +749,14 @@
                                                     .style("opacity", .7);
 
                                                   legend_3.selectAll('text')
-                                                   .data(brushedData)
+                                                   .data(data)
                                                    .enter()
                                                    .append("text")
                                                    .attr("x",40)
                                                    .attr("y",104)
                                                    .text("Price: 100 - 200");
 
-                                                   var legend_4 = svgmap.append("g")
+                                                   var legend_4 = svgselectMap.append("g")
                                                      .attr("class", "legend")
                                                       //.attr("x", w - 65)
                                                       //.attr("y", 25)
@@ -776,14 +776,14 @@
                                                      .style("opacity", .7);
 
                                                    legend_4.selectAll('text')
-                                                    .data(brushedData)
+                                                    .data(data)
                                                     .enter()
                                                     .append("text")
                                                     .attr("x",40)
                                                     .attr("y",134)
                                                     .text("Price: 200 - 500");
 
-                                                    var legend_5 = svgmap.append("g")
+                                                    var legend_5 = svgselectMap.append("g")
                                                       .attr("class", "legend")
                                                        //.attr("x", w - 65)
                                                        //.attr("y", 25)
@@ -803,14 +803,14 @@
                                                       .style("opacity", .7);
 
                                                     legend_5.selectAll('text')
-                                                     .data(brushedData)
+                                                     .data(data)
                                                      .enter()
                                                      .append("text")
                                                      .attr("x",40)
                                                      .attr("y",164)
                                                      .text("Price: 500 - 700");
 
-                                                     var legend_6 = svgmap.append("g")
+                                                     var legend_6 = svgselectMap.append("g")
                                                        .attr("class", "legend")
                                                         //.attr("x", w - 65)
                                                         //.attr("y", 25)
@@ -830,7 +830,7 @@
                                                        .style("opacity", .7);
 
                                                      legend_6.selectAll('text')
-                                                      .data(brushedData)
+                                                      .data(data)
                                                       .enter()
                                                       .append("text")
                                                       .attr("x",40)
