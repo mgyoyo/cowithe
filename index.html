@@ -599,7 +599,7 @@
                                                      .append("div")
                                                      .attr("class", "tooltip")
                                                      .style("opacity", 0)
-  
+
                 }
 
 
@@ -952,7 +952,28 @@
                           return "#800000";
                         }
                     })
-                    .style("opacity", 0.85);
+                    .style("opacity", 0.85)
+                    //tooltips
+                    .on("mouseover", function(d){
+                      tooltip.html("<br/>"+'Price: '+'$'+d.price+' USD'+"<br/>"+'Rate: '+d.overall_satisfaction+"<br/>"+'Type: '+d.property_type+"<br/>"+'Bedrooms: '+d.bedrooms +"<br/>"+'Guests: '+d.accommodates+"<br/>"+'Neighborhood: '+d.neighborhood+"<br/>"+'Name: '+d.name)
+                      .style("left", d3.event.pageX + 20+ "px")
+                  .style("top", d3.event.pageY + 20 + "px")
+                  .style("opacity", 0.8)
+                  d3.select(this).transition()
+                          .duration(150)
+     })
+     .on("mouseout", function(){
+          d3.select(this).transition()
+                          .duration(150)
+          tooltip.style("opacity", 0)
+     });
+
+
+                     var tooltip = d3.select("body")
+                                       .append("div")
+                                       .attr("class", "tooltip")
+                                       .style("opacity", 0)
+
             }
 
         });
