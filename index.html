@@ -7,12 +7,13 @@
         </head>
         <style type="text/css">
         .bar {
-            fill: steelblue;
+            fill: #FFD700;
         }
 
         .bar:hover {
-            fill: brown;
+            fill: #FF4500;
         }
+
 
         .axis {
             font: 10px sans-serif;
@@ -90,6 +91,22 @@
          					pointer-events: none;
 
          				}
+
+                .tooltip2{
+                 position: absolute;
+                 text-align: left;
+                 width: 120px;
+                 height: 50px;
+                 padding: 10px;
+                 font: 12px sans-serif;
+                  font-weight: bold;
+                 background: #F8F8FF;
+                 border: 20px;
+                 border-radius: 10px;
+                 pointer-events: none;
+
+               }
+
         </style>
         <body>
 
@@ -658,7 +675,27 @@
                 .attr("x", function (d) { return xAvgChart(d.key); })
                 .attr("width", xAvgChart.bandwidth())
                 .attr("y", function (d) { return yAvgChart(d.average); })
-                .attr("height", function (d) { return height_averagechart - yAvgChart(d.average); });
+                .attr("height", function (d) { return height_averagechart - yAvgChart(d.average); })
+                //tooltip
+                .on("mouseover", function(d){
+                  tooltip2.html("<br/>"+'Price: '+'$'+d.average.toFixed(2)+' USD')
+                  .style("left", d3.event.pageX + 20+ "px")
+              .style("top", d3.event.pageY + 20 + "px")
+              .style("opacity", 0.8)
+              d3.select(this).transition()
+                      .duration(150)
+ })
+ .on("mouseout", function(){
+      d3.select(this).transition()
+                      .duration(150)
+      tooltip2.style("opacity", 0)
+ });
+
+
+                 var tooltip2 = d3.select("body")
+                                   .append("div")
+                                   .attr("class", "tooltip2")
+                                   .style("opacity", 0)
 
 
  //selection map
